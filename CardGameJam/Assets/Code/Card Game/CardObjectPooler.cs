@@ -8,7 +8,7 @@ public class CardObjectPooler : MonoBehaviour
 
     private Queue<Card> cardPool = new Queue<Card>();
 
-    void Start()
+    void Awake()
     {
         // Pre-fill the pool with card instances.
         FillPool(maxPoolSize);
@@ -18,7 +18,6 @@ public class CardObjectPooler : MonoBehaviour
     {
         if (cardPool.Count == 0)
         {
-            Debug.LogWarning("Card pool is empty. Creating a new card instance.");
             CreateNewCard();
         }
 
@@ -31,6 +30,7 @@ public class CardObjectPooler : MonoBehaviour
     public void ReturnCardToPool(Card card)
     {
         card.ResetCard(); // Reset the card's state for the next round.
+        card.transform.SetParent(transform);
         card.gameObject.SetActive(false);
 
         cardPool.Enqueue(card);
