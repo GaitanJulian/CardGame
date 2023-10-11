@@ -11,14 +11,14 @@ public class SceneRestart : MonoBehaviour
 
     private void Start()
     {
-        repeatingPos = new Vector2(-10.88f, 4.55f);
+        repeatingPos = new Vector2(-10.88f, 5.7f);
     }
 
     private void Update()
     {
         if(transform.position.x <= maxValue)
         {
-            transform.position = repeatingPos;
+            transform.localPosition = repeatingPos;
         }
     }
 

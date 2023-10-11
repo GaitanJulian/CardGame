@@ -6,8 +6,8 @@ public class EnemyFactory : MonoBehaviour
 {
     [SerializeField] private ObjectPooler objectPooler;
 
-    private float yMaxRange = 2.54f;
-    private float yMinRange = 2.18f;
+    private float yMaxRange = 2.97f;
+    private float yMinRange = 2.61f;
 
     private void Start()
     {
