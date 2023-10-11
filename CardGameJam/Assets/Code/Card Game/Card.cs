@@ -40,6 +40,7 @@ public class Card : MonoBehaviour
         {
             StartCoroutine(FlipAnimation(cardFrontImage));
             isFlipped = true;
+            AudioManager.Instance.PlayRandomCardSound();
         } 
     }
 
@@ -52,7 +53,7 @@ public class Card : MonoBehaviour
             isFlipped = false;
         }
     }
-    private IEnumerator FlipAnimation(Sprite newImage, float duration = 0.5f)
+    private IEnumerator FlipAnimation(Sprite newImage, float duration =0.25f)
     {
         float elapsedTime = 0f;
 

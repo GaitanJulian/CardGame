@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator MatchCards()
     {
-        yield return new WaitForSeconds(2.0f); // Wait for 2 seconds to show the flipped cards.
+        yield return new WaitForSeconds(0.6f); // Wait for 0.6 seconds to show the flipped cards.
 
         if (flippedCards.Count == 2)
         {
@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
                 card1.cardData.cardID == card2.cardData.cardID)
             {
                 cardsMatched++;
+                AudioManager.Instance.PlayRandomCorrectSound();
                 if (cardsMatched == numberOfPairs)
                 {
                     ResetCardsMatched();
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
             {
                 // Cards do not match.
                 // Implement card mismatch logic.
+                AudioManager.Instance.PlayRandomErrorSound();
                 card1.CoverCard();
                 card2.CoverCard();
             }
