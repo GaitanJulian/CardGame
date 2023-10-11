@@ -10,11 +10,35 @@ public class EnemAttkAnim : MonoBehaviour
     float power = 8f;
     float oscillationSpeed = 4f;
     private Rigidbody2D rb2d; // Contador de animaciones ejecutadas.
-    
+
 
     private void Start()
     {
+        
         rb2d = GetComponent<Rigidbody2D>();
+
+        
+    }
+
+    private void OnEnable()
+    {
+        if(GameManager.instance != null)
+        {
+            GameManager.instance.OnCardMatched += HandleCardMatched;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.OnCardMatched -= HandleCardMatched;
+        }
+    }
+
+    private void HandleCardMatched()
+    {
+        isFighting = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +65,7 @@ public class EnemAttkAnim : MonoBehaviour
             elapsedTime += Time.deltaTime;
 
             yield return null;
-        } while (isFighting && elapsedTime < 5.5f);
+        } while (isFighting);
 
         isFighting = false;
         gameObject.SetActive(false);
