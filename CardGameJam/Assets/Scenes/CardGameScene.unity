@@ -7770,7 +7770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be3787b70618fe4bb5999ed67a16f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPooler: {fileID: 0}
+  objectPooler: {fileID: 1836528303}
 --- !u!114 &1836528303
 MonoBehaviour:
   m_ObjectHideFlags: 0
