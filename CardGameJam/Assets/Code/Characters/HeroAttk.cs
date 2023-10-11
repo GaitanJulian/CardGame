@@ -25,6 +25,27 @@ public class HeroAttk : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.OnCardMatched += HandleCardMatched;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.OnCardMatched -= HandleCardMatched;
+        }
+    }
+
+    private void HandleCardMatched()
+    {
+        isFighting = false;
+    }
+
     private IEnumerator OscillateAnimation()
     {
         float initialRotation = transform.rotation.eulerAngles.z;
@@ -43,7 +64,7 @@ public class HeroAttk : MonoBehaviour
             elapsedTime += Time.deltaTime;
 
             yield return null;
-        } while (isFighting && elapsedTime < 5.5f);
+        } while (isFighting);
 
         isFighting = false;
 
