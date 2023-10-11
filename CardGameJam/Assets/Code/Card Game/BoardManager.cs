@@ -17,7 +17,7 @@ public class BoardManager : MonoBehaviour
     public CardData[] blueCards;
     public CardData[] grayCards;
 
-    public DifficultyLevel difficulty = DifficultyLevel.Easy;
+    public DifficultyLevel difficulty;
 
     private int currentRound = 1;
     private int cardsPerRound = 6; // Starting number of cards per round.
@@ -28,6 +28,7 @@ public class BoardManager : MonoBehaviour
 
     void Start()
     {
+        difficulty = DifficultyManager.Instance.LoadDifficulty();
         StartNextRound();
     }
 
@@ -160,13 +161,22 @@ public class BoardManager : MonoBehaviour
 
     public void RoundWin()
     {
-        currentRound++;
-        cardsPerRound += 6;
 
-        Card[] cards = gridPanel.GetComponentsInChildren<Card>();
+        if (currentRound == 5)
+        {
+            DifficultyManager.Instance.UnlockHardDifficulty();
+            SceneManagement.Instance.LoadMainMenu();
+        }
+        else
+        {
+            currentRound++;
+            cardsPerRound += 6;
 
-        // Start the coroutine to return cards to the pool and then start the next round.
-        StartCoroutine(ReturnCardsAndStartNextRound(cards));
+            Card[] cards = gridPanel.GetComponentsInChildren<Card>();
+
+            // Start the coroutine to return cards to the pool and then start the next round.
+            StartCoroutine(ReturnCardsAndStartNextRound(cards));
+        }    
     }
 
     private IEnumerator ReturnCardsAndStartNextRound(Card[] cards)
