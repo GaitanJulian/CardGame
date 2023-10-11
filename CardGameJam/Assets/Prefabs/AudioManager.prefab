@@ -566,15 +566,14 @@ MonoBehaviour:
   CorrectSFX: {fileID: 8531838543125360405}
   clickSound: {fileID: 8300000, guid: 70014479e4420074ab6d8dd4963b5d10, type: 3}
   musicBackground: {fileID: 0}
-  error1: {fileID: 8300000, guid: 79ca392a891bda149bbe7109b0559aea, type: 3}
-  error2: {fileID: 8300000, guid: e49f4256e3ceefc4982b19705c2aeb90, type: 3}
-  error3: {fileID: 8300000, guid: 2c7931ade031bd645b54623e1d67e262, type: 3}
-  error4: {fileID: 8300000, guid: 26a20df5e771df84d9fe16b31f75bcc4, type: 3}
-  confirmation1: {fileID: 8300000, guid: 6913e50d50b0fca41b69a6dd243848d1, type: 3}
-  confirmation2: {fileID: 8300000, guid: efc7f0d631b39724fb5085a4cec3c859, type: 3}
-  confirmation3: {fileID: 8300000, guid: 022640061596db648b7671ae8eb812d1, type: 3}
-  confirmation4: {fileID: 8300000, guid: bf4ed0066bf84d44eb15e8a4b6f592d4, type: 3}
-  cardSound1: {fileID: 8300000, guid: 86f116f927d14a344ae98677638c099f, type: 3}
-  cardSound2: {fileID: 8300000, guid: 44070bc6e609e7048a752c690dc810f4, type: 3}
-  cardSound3: {fileID: 8300000, guid: 49232c887a902b948954aceecc69c207, type: 3}
-  cardSound4: {fileID: 8300000, guid: 91454f0a0f3ded5428d12cf806676cf8, type: 3}
+  errorSounds:
+  - {fileID: 8300000, guid: 2c7931ade031bd645b54623e1d67e262, type: 3}
+  - {fileID: 8300000, guid: 26a20df5e771df84d9fe16b31f75bcc4, type: 3}
+  confimationSounds:
+  - {fileID: 8300000, guid: efc7f0d631b39724fb5085a4cec3c859, type: 3}
+  - {fileID: 8300000, guid: 022640061596db648b7671ae8eb812d1, type: 3}
+  cardSounds:
+  - {fileID: 8300000, guid: 86f116f927d14a344ae98677638c099f, type: 3}
+  - {fileID: 8300000, guid: 44070bc6e609e7048a752c690dc810f4, type: 3}
+  - {fileID: 8300000, guid: 49232c887a902b948954aceecc69c207, type: 3}
+  - {fileID: 8300000, guid: 91454f0a0f3ded5428d12cf806676cf8, type: 3}
