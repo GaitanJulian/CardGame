@@ -40,11 +40,7 @@ public class CardObjectPooler : MonoBehaviour
     {
         for (int i = 0; i < size; i++)
         {
-            GameObject cardObj = Instantiate(cardPrefab, transform);
-            Card card = cardObj.GetComponent<Card>();
-            card.gameObject.SetActive(false);
-
-            cardPool.Enqueue(card);
+            CreateNewCard();
         }
     }
 
