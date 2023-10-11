@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     private int numberOfPairs;
     private int cardsMatched = 0;
 
+    // Declare a custom event for card matches.
+    public delegate void CardMatchedEvent();
+    public event CardMatchedEvent OnCardMatched;
+
     private void Awake()
     {
         if (instance == null)
@@ -52,7 +56,10 @@ public class GameManager : MonoBehaviour
             if (card1.cardData.colorType == card2.cardData.colorType &&
                 card1.cardData.cardID == card2.cardData.cardID)
             {
+                // Cards match
+                // Implement card match logic
                 cardsMatched++;
+                OnCardMatched?.Invoke();
                 AudioManager.Instance.PlayRandomCorrectSound();
                 if (cardsMatched == numberOfPairs)
                 {
