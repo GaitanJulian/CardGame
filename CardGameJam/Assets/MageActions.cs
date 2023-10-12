@@ -28,7 +28,6 @@ public class MageActions : MonoBehaviour
         {
             
             rbMage.velocity = new Vector2(0f, 3f);
-            Debug.Log("Sí esta entrando!");
 
             if (elapsedTime < 1.5f)
             {
@@ -46,11 +45,6 @@ public class MageActions : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnCardMatched += HandleCardMatched;
-        }
-        else
-        {
-
-            print("No lo hace");
         }
     }
 
