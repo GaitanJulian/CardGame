@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "HealthManagerScriptableObject", menuName = "ScriptableObjects/ Enemy Counter Manager")]
+[CreateAssetMenu(fileName = "EnemyCounterScriptableObject", menuName = "ScriptableObjects/ Enemy Counter Manager")]
 public class EnemyCounterScriptableObject : ScriptableObject
 {
     public int maxEnemies = 45;
