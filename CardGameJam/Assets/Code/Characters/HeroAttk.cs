@@ -27,17 +27,17 @@ public class HeroAttk : MonoBehaviour
 
     private void OnEnable()
     {
-        if (GameManager.instance != null)
+        if (GameManager.Instance != null)
         {
-            GameManager.instance.OnCardMatched += HandleCardMatched;
+            GameManager.Instance.OnCardMatched += HandleCardMatched;
         }
     }
 
     private void OnDisable()
     {
-        if (GameManager.instance != null)
+        if (GameManager.Instance != null)
         {
-            GameManager.instance.OnCardMatched -= HandleCardMatched;
+            GameManager.Instance.OnCardMatched -= HandleCardMatched;
         }
     }
 

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance { get; private set; }
 
     public GameObject blockPanel;
     public BoardManager boardManager;
@@ -20,13 +20,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Keep this GameObject persistent across scenes.
         }
         else
         {
-            Destroy(this);
+            Debug.LogError("Duplicate GameManager instance found and destroyed.");
+            Destroy(gameObject);
         }
     }
 

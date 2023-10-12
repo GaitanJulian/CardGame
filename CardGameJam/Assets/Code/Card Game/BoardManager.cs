@@ -36,7 +36,7 @@ public class BoardManager : MonoBehaviour
     {
         // Adjust the number of cards based on the current round.
         int cardsToSelect = cardsPerRound;
-        GameManager.instance.SetCardsToMatch(cardsToSelect / 2);
+        GameManager.Instance.SetCardsToMatch(cardsToSelect / 2);
         // Adjust the constriant of the grid
         ModifyGridLayoutGroup(currentRound);
 

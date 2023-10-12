@@ -27,10 +27,10 @@ public class Card : MonoBehaviour
 
     public void OnCardClick()
     {
-        if (!isFlipped && !GameManager.instance.MatchingInProgress)
+        if (!isFlipped && !GameManager.Instance.MatchingInProgress)
         {
             UncoverCard();
-            GameManager.instance.OnCardFlipped(this);
+            GameManager.Instance.OnCardFlipped(this);
         }
     }
 
