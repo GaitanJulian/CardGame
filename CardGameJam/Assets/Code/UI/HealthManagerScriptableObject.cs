@@ -38,9 +38,10 @@ public class HealthManagerScriptableObject : ScriptableObject
         healthChangeEvent.Invoke(health);
     }
 
-    private void SetInitialHealth()
+    public void SetInitialHealth()
     {
         actualMaxHealth = maxHealth;
         health = actualMaxHealth;
+        healthChangeEvent.Invoke(health);
     }
 }

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Enemy Counter")]
     [SerializeField]
-    private TextMeshPro enemyCounterText;
+    private TextMeshProUGUI enemyCounterText;
     [SerializeField]
     private EnemyCounterScriptableObject enemyCounter;
     

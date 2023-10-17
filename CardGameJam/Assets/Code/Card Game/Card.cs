@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Card : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Card : MonoBehaviour
         cardFrontImage = null;
         displayImage.sprite = cardBackImage;
         isFlipped = false;
+        FadeOut();
     }
 
     public void OnCardClick()
@@ -104,5 +106,17 @@ public class Card : MonoBehaviour
         Vector3 resetScale = transform.localScale;
         resetScale.x = 1f;
         transform.localScale = resetScale;
+    }
+
+    // Smoothly fade in the card over the specified duration.
+    public void FadeIn()
+    {
+        displayImage.DOFade(1.0f,3f); // Fade in using DoTween.
+    }
+
+    // Set the card instantly invisible.
+    public void FadeOut()
+    {
+        displayImage.DOFade(0.0f, 1.5f); // Fade in using DoTween.
     }
 }

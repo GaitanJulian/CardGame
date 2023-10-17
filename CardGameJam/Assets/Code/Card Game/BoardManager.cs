@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +28,8 @@ public class BoardManager : MonoBehaviour
     public GridLayoutGroup gridLayoutGroup; // Reference to the GridLayoutGroup.
     public GameObject gridPanel; // Reference to the gameObject that holds the grid group
 
+    public ParticleSystem magicParticlesSpawn;
+
     void Start()
     {
         difficulty = DifficultyManager.Instance.LoadDifficulty();
@@ -34,6 +38,8 @@ public class BoardManager : MonoBehaviour
 
     void StartNextRound()
     {
+        magicParticlesSpawn.Play();
+
         // Adjust the number of cards based on the current round.
         int cardsToSelect = cardsPerRound;
         GameManager.Instance.SetCardsToMatch(cardsToSelect / 2);
@@ -56,6 +62,12 @@ public class BoardManager : MonoBehaviour
 
         // Shuffle the cards in the grid if desired.
         AddRandomCardsToGrid();
+
+        Card[] cards = gridPanel.GetComponentsInChildren<Card>();
+        foreach (Card card in cards) 
+        {
+            card.FadeIn();
+        }
     }
 
     List<CardData> SelectPairsOfCards(int count)
@@ -181,16 +193,31 @@ public class BoardManager : MonoBehaviour
 
     private IEnumerator ReturnCardsAndStartNextRound(Card[] cards)
     {
+
+        yield return StartCoroutine(FadeOutCards(cards));
+
+        yield return new WaitForSeconds(1.0f);
+
         // Return all the cards to the pool.
         foreach (Card card in cards)
         {
             cardPooler.ReturnCardToPool(card);
         }
 
-        // Wait for a short delay before starting the next round to allow cards to return.
-        yield return new WaitForSeconds(2f); 
-
         // Start the next round.
         StartNextRound();
+
+        yield return null;
+    }
+
+
+    private IEnumerator FadeOutCards(Card[] cards)
+    {
+        foreach (Card card in cards)
+        {
+            card.FadeOut();
+        }
+
+        yield return null;
     }
 }

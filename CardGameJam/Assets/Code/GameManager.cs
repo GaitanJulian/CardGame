@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     private int numberOfPairs;
     private int cardsMatched = 0;
 
+    // Reference to the Health Manager and Enemy Counter Manager
+    [SerializeField] private EnemyCounterScriptableObject enemyCounterScriptableObject;
+    [SerializeField] private HealthManagerScriptableObject healthManagerScriptableObject;
+
     // Declare a custom event for card matches.
     public delegate void CardMatchedEvent();
     public event CardMatchedEvent OnCardMatched;
@@ -32,6 +36,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        healthManagerScriptableObject.SetInitialHealth();
+        enemyCounterScriptableObject.ResetCounter();
+    }
     public bool MatchingInProgress { get { return matchingInProgress; } }
 
     public void OnCardFlipped(Card card)

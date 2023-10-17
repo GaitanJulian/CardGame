@@ -12,8 +12,7 @@ public class EnemyCounterScriptableObject : ScriptableObject
 
     private void OnEnable()
     {
-        enemyCounter = 0;
-
+        ResetCounter();
         if (enemyKilled != null)
         {
             enemyKilled = new UnityEvent<int>();
@@ -23,6 +22,12 @@ public class EnemyCounterScriptableObject : ScriptableObject
     public void EnemyKilled()
     {
         enemyCounter++;
+        enemyKilled.Invoke(enemyCounter);
+    }
+
+    public void ResetCounter()
+    {
+        enemyCounter = 0;
         enemyKilled.Invoke(enemyCounter);
     }
 }
