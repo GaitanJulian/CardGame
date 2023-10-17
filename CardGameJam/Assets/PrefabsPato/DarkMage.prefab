@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a87ce5f15d321948ac7169c966d5282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCounter: {fileID: 11400000, guid: 4c4c817ccd85a824cb80aec2dfee0a69, type: 2}
+  healthManager: {fileID: 11400000, guid: 12456cad3e2fbe2469f52aa15e6f4215, type: 2}
 --- !u!50 &4354790663233346496
 Rigidbody2D:
   serializedVersion: 4
