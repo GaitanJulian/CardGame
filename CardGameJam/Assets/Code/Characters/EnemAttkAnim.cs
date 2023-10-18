@@ -10,7 +10,10 @@ public class EnemAttkAnim : MonoBehaviour
     float power = 8f;
     float oscillationSpeed = 4f;
     private Rigidbody2D rb2d; // Contador de animaciones ejecutadas.
-    private int countForKills = 0;
+
+    public  int countForKills;
+
+    private HeroAttk heroRef;
 
     [SerializeField] private EnemyCounterScriptableObject enemyCounter;
 
@@ -18,7 +21,7 @@ public class EnemAttkAnim : MonoBehaviour
     {
         
         rb2d = GetComponent<Rigidbody2D>();
-
+        heroRef = GameObject.Find("Hero").GetComponent<HeroAttk>();
         
     }
 
@@ -41,7 +44,7 @@ public class EnemAttkAnim : MonoBehaviour
     private void HandleCardMatched()
     {
         isFighting = false;
-        countForKills++;
+        countForKills += 1;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,13 +62,15 @@ public class EnemAttkAnim : MonoBehaviour
         float initialRotation = transform.rotation.eulerAngles.z;
         float elapsedTime = 0f;
 
+        float t;
+
         if (countForKills == 0)
         {
             do
             {
                 float oscillationValue = Mathf.Sin(elapsedTime * oscillationSpeed);
 
-                float t = -(oscillationValue + 1f) / 2f;
+                t = -(oscillationValue + 1f) / 2f;
 
                 float newRotation = Mathf.Lerp(minAngle, maxAngle, Mathf.Pow(t, power));
 
@@ -74,7 +79,7 @@ public class EnemAttkAnim : MonoBehaviour
                 elapsedTime += Time.deltaTime;
 
                 yield return null;
-            } while (isFighting);
+            } while (isFighting || heroRef.isFighting);
         }
         else
         {
@@ -82,7 +87,7 @@ public class EnemAttkAnim : MonoBehaviour
             {
                 float oscillationValue = Mathf.Sin(elapsedTime * oscillationSpeed);
 
-                float t = -(oscillationValue + 1f) / 2f;
+                t = -(oscillationValue + 1f) / 2f;
 
                 float newRotation = Mathf.Lerp(minAngle, maxAngle, Mathf.Pow(t, power));
 
@@ -97,8 +102,12 @@ public class EnemAttkAnim : MonoBehaviour
 
 
         isFighting = false;
+
+
         gameObject.SetActive(false);
-        countForKills--;
+
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        countForKills -= 1;
         enemyCounter.EnemyKilled();
 
     }

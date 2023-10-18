@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4185786388211714075}
   - component: {fileID: -9073785577373258497}
+  - component: {fileID: 1894453084894778506}
   - component: {fileID: 8589332641221286195}
   - component: {fileID: 7207448503323576881}
-  - component: {fileID: 5574948151310899543}
   - component: {fileID: 4379895492689199700}
   m_Layer: 0
   m_Name: Ogre
@@ -49,6 +49,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityX: -3
+--- !u!114 &1894453084894778506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8317703687658666913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a87ce5f15d321948ac7169c966d5282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCounter: {fileID: 11400000, guid: 4c4c817ccd85a824cb80aec2dfee0a69, type: 2}
 --- !u!212 &8589332641221286195
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -146,19 +159,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &5574948151310899543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8317703687658666913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a87ce5f15d321948ac7169c966d5282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCounter: {fileID: 11400000, guid: 4c4c817ccd85a824cb80aec2dfee0a69, type: 2}
 --- !u!50 &4379895492689199700
 Rigidbody2D:
   serializedVersion: 4

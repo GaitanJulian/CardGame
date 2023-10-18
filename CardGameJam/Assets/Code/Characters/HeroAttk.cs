@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Properties;
 using UnityEngine;
 
 public class HeroAttk : MonoBehaviour
 {
     private float maxAngle = -30f;
     private float minAngle = 0f;
-    public bool isFighting = false;
+    public bool isFighting;
     public float power = 8f;
     public float oscillationSpeed = 4f;
     private Rigidbody2D rb2d; // Contador de animaciones ejecutadas.
 
-    private int countForKills;
+    public int countForKills;
+
+    public GameObject visualFX;
 
     [SerializeField] private HealthManagerScriptableObject healthManager;
 
@@ -49,6 +52,14 @@ public class HeroAttk : MonoBehaviour
     {
         isFighting = false;
         countForKills++;
+        if (countForKills == 0)
+        {
+            visualFX.SetActive(false);
+        }
+        else
+        {
+            visualFX.SetActive(false);
+        }
     }
 
 
@@ -58,13 +69,15 @@ public class HeroAttk : MonoBehaviour
         float initialRotation = transform.rotation.eulerAngles.z;
         float elapsedTime = 0f;
 
+        float t = 0;
+
         if (countForKills == 0)
         {
             do
             {
                 float oscillationValue = Mathf.Sin(elapsedTime * oscillationSpeed);
 
-                float t = -(oscillationValue + 1f) / 2f;
+                t = -(oscillationValue + 1f) / 2f;
 
                 float newRotation = Mathf.Lerp(minAngle, maxAngle, Mathf.Pow(t, power));
 
@@ -72,7 +85,10 @@ public class HeroAttk : MonoBehaviour
 
                 elapsedTime += Time.deltaTime;
 
-                if(elapsedTime > 2 && elapsedTime % 1 == 0)
+                if( elapsedTime%2 < 0.1f )
+                {
+                    healthManager.DecreaseHealth(1);
+                }
 
                 yield return null;
             } while (isFighting);
@@ -83,20 +99,25 @@ public class HeroAttk : MonoBehaviour
             {
                 float oscillationValue = Mathf.Sin(elapsedTime * oscillationSpeed);
 
-                float t = -(oscillationValue + 1f) / 2f;
+                t = -(oscillationValue + 1f) / 2f;
 
                 float newRotation = Mathf.Lerp(minAngle, maxAngle, Mathf.Pow(t, power));
 
                 rb2d.MoveRotation(newRotation);
 
                 elapsedTime += Time.deltaTime;
-
+                
                 yield return null;
             } while (elapsedTime < 4);
         }
-        countForKills--;
+
+        countForKills -= 1;
+
+        elapsedTime = 0f;
 
         isFighting = false;
+
+        transform.eulerAngles = new Vector3(0, 0, 0);
 
     }
 }
